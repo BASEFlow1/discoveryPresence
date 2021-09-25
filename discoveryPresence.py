@@ -12,12 +12,6 @@ def proccessActive(str):
     else:
         return False
 
-def print_event(*args):
-    """Print an event to terminal with emphasis (using ANSI colour codes). How this displays exactly varies between
-    terminals."""
-    print('\033[1m' + ' '.join(map(str, args)) + '\033[0m')
-
-
 rpc = Presence("888528830040526889")
 rpc.connect()
 
@@ -43,15 +37,17 @@ def yoMama(startTime):
     if proccessActive("Freelancer.exe"):
         if not isDocked:
             if str(currentChar[:5]) == "46th|":
-                rpc.update(large_image="rpcImage", state = f"Playing as {currentChar}", details = f"Patrolling in {currentSystem}", start = startTime)
+                rpc.update(large_image="rpcimage", details = f"Patrolling in {currentSystem}", start = startTime)
             elif "Lyrex" in str(currentChar):
-                rpc.update(large_image="rpcImage", state = f"Playing as {currentChar}", details = f"Doing Crime in {currentSystem}", start = startTime)
+                rpc.update(large_image="rpcimage", details = f"Doing Crime in {currentSystem}", start = startTime)
             elif "Jukin.Johnson" in str(currentChar):
-                rpc.update(large_image="rpcImage", state = f"Playing as {currentChar}", details = f"Probably smuggling cardamine in {currentSystem}", start = startTime)
+                rpc.update(large_image="rpcimage", details = f"Probably smuggling cardamine in {currentSystem}", start = startTime)
+            elif "TCL|" in str(currentChar):
+                rpc.update(large_image="rpcimage", details = f"Shipping cargo in {currentSystem}", start = startTime)
             else:
-                rpc.update(large_image="rpcImage", state = f"Playing as {currentChar}", details = f"Freelancing in {currentSystem}", start = startTime)
+                rpc.update(large_image="rpcimage", details = f"Freelancing in {currentSystem}", start = startTime)
         else:
-            rpc.update(large_image="rpcImage", state = f"Playing as {currentChar}", details = f"Docked on {currentBase}", start = startTime)
+            rpc.update(large_image="rpcimage", details = f"Docked on {currentBase}", start = startTime)
         print(f"[{Fore.GREEN}DEBUG{Fore.WHITE}] Freelancer.exe {Fore.GREEN}active{Fore.WHITE}, updating Discord Rich Presence.")
     else:
         print(f"[{Fore.RED}DEBUG{Fore.WHITE}] Freelancer.exe {Fore.RED}not active{Fore.WHITE}, clearing Discord Rich Presence.")
@@ -64,7 +60,7 @@ while True:
     currentChar = game_state.name if game_state.name != None else "None"
     currentBase = game_state.base if game_state.base != None else "None"
     isDocked = game_state.docked if game_state.docked != None else "None"
-    if currentBase == None and isDocked == True:
+    if currentBase == "None" and isDocked == True:
         currentBase = "a POB"
     print(f"currentSystem: {currentSystem}\ncurrentChar: {currentChar}\ncurrentBase: {currentBase}\nisDocked: {isDocked}")
     if not proccessActive("Freelancer.exe"):
