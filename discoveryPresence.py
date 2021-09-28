@@ -36,16 +36,7 @@ startTime = time.time()
 def yoMama(startTime):
     if proccessActive("Freelancer.exe"):
         if not isDocked:
-            if str(currentChar[:5]) == "46th|":
-                rpc.update(large_image="rpcimage", details = f"Patrolling in {currentSystem}", start = startTime)
-            elif "Lyrex" in str(currentChar):
-                rpc.update(large_image="rpcimage", details = f"Doing Crime in {currentSystem}", start = startTime)
-            elif "Jukin.Johnson" in str(currentChar):
-                rpc.update(large_image="rpcimage", details = f"Probably smuggling cardamine in {currentSystem}", start = startTime)
-            elif "TCL|" in str(currentChar):
-                rpc.update(large_image="rpcimage", details = f"Shipping cargo in {currentSystem}", start = startTime)
-            else:
-                rpc.update(large_image="rpcimage", details = f"Freelancing in {currentSystem}", start = startTime)
+            rpc.update(large_image="rpcimage", details = f"Freelancing in {currentSystem}", start = startTime)
         else:
             rpc.update(large_image="rpcimage", details = f"Docked on {currentBase}", start = startTime)
         print(f"[{Fore.GREEN}DEBUG{Fore.WHITE}] Freelancer.exe {Fore.GREEN}active{Fore.WHITE}, updating Discord Rich Presence.")
