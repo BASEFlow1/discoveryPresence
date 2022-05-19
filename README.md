@@ -3,7 +3,7 @@ Python script for showing if Discovery Freelancer is being played via Discord RP
 
 Also showing some additional information using flair
 
-#Usage
+Usage
 ---
 1. Clone the repository
 2. Unzip into a directory of your choosing
